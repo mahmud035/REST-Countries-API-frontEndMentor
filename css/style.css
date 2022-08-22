@@ -70,8 +70,16 @@ body.dark {
   color: var(--white);
 }
 
-body.dark nav {
-  background-color: var(--dark-mode-elements);
+body.dark nav,
+body.dark nav button,
+body.dark .card,
+body.dark #search-country,
+body.dark #filter {
+  background-color: var(--dark-mode-elements) !important;
+  color: var(--white) !important;
+}
+
+body.dark nav a {
   color: var(--white) !important;
 }
 
@@ -82,8 +90,26 @@ body.dark nav {
 
 #search-icon {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 40px;
-  transform: translateY(-50%);
+  transform: translateY(-40%);
   font-size: 20px;
+}
+
+/* Main Section */
+.country-img {
+  height: 210px;
+  width: 100%;
+}
+
+#country-container h6 {
+  font-weight: bold;
+}
+
+#country-container h6 span {
+  font-weight: normal;
+}
+
+.card {
+  background-color: var(--white);
 }

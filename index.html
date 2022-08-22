@@ -41,33 +41,45 @@
     </nav>
 
     <!-- Search and Filter -->
-    <div class="container">
-      <div class="row my-5 gx-4">
-        <div class="col-md-5 position-relative">
-          <input
-            id="search-country"
-            class="form-control me-2 shadow-sm border-0 p-3 ps-5 bg-white"
-            type="search"
-            placeholder="Search for a country"
-            aria-label="Search"
-          />
-          <i id="search-icon" class="bx bx-search-alt-2"></i>
-        </div>
-        <div class="col-2 ms-auto">
-          <select
-            id="filter"
-            class="form-select form-select-sm mb-3 shadow-sm border-0 p-3 ps-4 bg-white rounded"
-            aria-label=".form-select-sm example"
-            placeholder="Filter by Region"
-          >
-            <option selected>Filter by Region</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+    <section class="search-and-filter">
+      <div class="container">
+        <div class="row my-5 gx-4">
+          <div class="col-md-5 position-relative">
+            <input
+              id="search-country"
+              class="form-control me-2 shadow-sm border-0 p-3 ps-5 bg-white"
+              type="search"
+              placeholder="Search for a country"
+              aria-label="Search"
+            />
+            <i id="search-icon" class="bx bx-search-alt-2"></i>
+          </div>
+          <div class="col-2 ms-auto">
+            <select
+              id="filter"
+              class="form-select form-select-sm mb-3 shadow-sm border-0 p-3 ps-4 bg-white rounded"
+              aria-label=".form-select-sm example"
+              placeholder="Filter by Region"
+            >
+              <option selected>Filter by Region</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Main -->
+    <main>
+      <div class="container mb-5">
+        <div
+          id="country-container"
+          class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5"
+        ></div>
+      </div>
+    </main>
 
     <!-- Bootstrap CDN JS -->
     <script
