@@ -62,6 +62,7 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   background-color: var(--light-mode-background);
   color: var(--light-mode-text);
+  transition: 0.182s;
 }
 
 /* Common CSS Classes */
@@ -96,7 +97,7 @@ body.dark nav a {
   font-size: 20px;
 }
 
-/* Main Section */
+/* Main Section: Display All Country */
 .country-img {
   height: 210px;
   width: 100%;
