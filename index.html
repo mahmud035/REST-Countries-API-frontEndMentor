@@ -45,6 +45,7 @@
     <section class="search-and-filter">
       <div class="container">
         <div class="row my-5 gx-4">
+          <!-- Search -->
           <div class="col-md-5 position-relative">
             <input
               id="search-country"
@@ -55,18 +56,26 @@
             />
             <i id="search-icon" class="bx bx-search-alt-2"></i>
           </div>
+          <!-- Filter -->
           <div class="col-2 ms-auto">
-            <select
-              id="filter"
-              class="form-select form-select-sm mb-3 shadow-sm border-0 p-3 ps-4 bg-white rounded"
-              aria-label=".form-select-sm example"
-              placeholder="Filter by Region"
-            >
-              <option selected>Filter by Region</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <div class="dropdown">
+              <button
+                id="filter"
+                class="dropdown-toggle shadow-sm border-0 p-3 ps-4 bg-white rounded w-100"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Filter by Region
+              </button>
+              <ul class="dropdown-menu border-0 mt-1 w-100">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
