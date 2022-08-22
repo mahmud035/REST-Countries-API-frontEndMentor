@@ -60,6 +60,24 @@ select {
 
 body {
   font-family: 'Nunito Sans', sans-serif;
+  background-color: var(--light-mode-background);
+  color: var(--light-mode-text);
 }
 
 /* Common CSS Classes */
+body.dark {
+  background-color: var(--dark-mode-bg);
+  color: var(--white);
+}
+
+/* Search & Filter */
+#search-country {
+  padding-left: 5rem !important;
+}
+#search-icon {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
