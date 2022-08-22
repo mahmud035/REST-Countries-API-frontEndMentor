@@ -70,10 +70,16 @@ body.dark {
   color: var(--white);
 }
 
+body.dark nav {
+  background-color: var(--dark-mode-elements);
+  color: var(--white) !important;
+}
+
 /* Search & Filter */
 #search-country {
   padding-left: 5rem !important;
 }
+
 #search-icon {
   position: absolute;
   top: 50%;
