@@ -32,7 +32,7 @@ function displayCountries(countries) {
   const countryContainer = document.getElementById('country-container');
 
   for (const country of countries) {
-    console.log(country.capital?.[0]);
+    // console.log(country.capital?.[0]);
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML = `
@@ -48,4 +48,41 @@ function displayCountries(countries) {
 
     countryContainer.appendChild(div);
   }
+}
+
+//* add event listener to search input field
+
+document.getElementById('search-country').addEventListener('keyup', (e) => {
+  const searchText = e.target.value;
+
+  // This is a fetch request to the API. It is using the searchText to search for the country.
+  const url = `https://restcountries.com/v3.1/name/${searchText}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displaySearchCountry(data[0]));
+
+  // checking if the searchText is empty? if it is, it will load all the countries.
+  if (searchText === '') {
+    loadCountries();
+  }
+});
+
+function displaySearchCountry(country) {
+  const countryContainer = document.getElementById('country-container');
+  countryContainer.innerHTML = ''; // clear the country container before adding new countries
+  console.log(country);
+  const div = document.createElement('div');
+  div.classList.add('col');
+  div.innerHTML = `
+      <div class="card h-100 shadow-sm border-0 rounded">
+          <img src="${country?.flags?.png}" class="card-img-top  country-img" alt="..." />
+          <div class="card-body p-4 pb-5">
+            <h4 class="card-title fw-bold py-2">${country?.name?.common}</h4>
+            <h6>Population: <span>${country?.population} </span> </h6>
+            <h6>Region: <span>${country?.region} </span> </h6>
+            <h6>Capital: <span>${country.capital?.[0]} </span> </h6>
+          </div>
+      </div>`;
+
+  countryContainer.appendChild(div);
 }
