@@ -125,4 +125,5 @@ body.dark #filter + ul li:hover a {
 
 .card {
   background-color: var(--white);
+  cursor: pointer;
 }
