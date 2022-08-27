@@ -37,7 +37,7 @@ function displayCountries(countries) {
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML = `
-      <div onclick = 'displayCountryDetail(${countryObject})' class="card h-100 shadow-sm border-0 rounded">
+      <div onclick = 'displayCountryDetail(${countryObject})' id="country-card" class="card h-100 shadow-sm border-0 rounded">
           <img src="${country?.flags?.png}" class="card-img-top  country-img" alt="..." />
           <div class="card-body p-4 pb-5">
             <h4 class="card-title fw-bold py-2">${country?.name?.common}</h4>
@@ -48,23 +48,107 @@ function displayCountries(countries) {
       </div>`;
 
     countryContainer.appendChild(div);
-    if (country.region === 'Africa') {
-      document.getElementById('region-africa').children[0].innerText =
-        country.region;
-    } else if (country.region === 'Americas') {
-      document.getElementById('region-america').children[0].innerText =
-        country.region;
-    } else if (country.region === 'Asia') {
-      document.getElementById('region-asia').children[0].innerText =
-        country.region;
-    } else if (country.region === 'Europe') {
-      document.getElementById('region-europe').children[0].innerText =
-        country.region;
-    } else if (country.region === 'Oceania') {
-      document.getElementById('region-oceania').children[0].innerText =
-        country.region;
-    }
   }
+}
+
+function loadCountries2() {
+  fetch('https://restcountries.com/v3.1/all')
+    .then((res) => res.json())
+    .then((data) => displayAfricaRegionCountry(data));
+}
+
+loadCountries2();
+
+function setElementTextValue(country) {
+  if (country.region === 'Africa') {
+    const regionAfrica = document.getElementById('region-africa');
+    regionAfrica.children[0].innerText = country.region;
+  } else if (country.region === 'Americas') {
+    const regionAmerica = document.getElementById('region-america');
+    regionAmerica.children[0].innerText = country.region;
+  } else if (country.region === 'Asia') {
+    const regionAsia = document.getElementById('region-asia');
+    regionAsia.children[0].innerText = country.region;
+  } else if (country.region === 'Europe') {
+    const regionEurope = document.getElementById('region-europe');
+    regionEurope.children[0].innerText = country.region;
+  } else if (country.region === 'Oceania') {
+    const regionOceania = document.getElementById('region-oceania');
+    regionOceania.children[0].innerText = country.region;
+  }
+}
+
+function displayAfricaRegionCountry(countries) {
+  const filterRegion = document.getElementById('filter');
+
+  countries.forEach((country) => {
+    setElementTextValue(country);
+  });
+
+  //* Add event listener to Africa Region List Item
+  document.getElementById('region-africa').addEventListener('click', (e) => {
+    const countryContainer = document.getElementById('country-container');
+    countryContainer.innerHTML = '';
+
+    const africanCountries = countries.filter((country) => {
+      filterRegion.innerText = 'Africa';
+      return country.region === 'Africa';
+    });
+    displayCountries(africanCountries);
+    return;
+  });
+
+  //* Add event listener to Americas Region List Item
+  document.getElementById('region-america').addEventListener('click', (e) => {
+    const countryContainer = document.getElementById('country-container');
+    countryContainer.innerHTML = '';
+
+    const americanCountries = countries.filter((country) => {
+      filterRegion.innerText = 'Americas';
+      return country.region === 'Americas';
+    });
+    displayCountries(americanCountries);
+    return;
+  });
+
+  //* Add event listener to Asia Region List Item
+  document.getElementById('region-asia').addEventListener('click', (e) => {
+    const countryContainer = document.getElementById('country-container');
+    countryContainer.innerHTML = '';
+
+    const asianCountries = countries.filter((country) => {
+      filterRegion.innerText = 'Asia';
+      return country.region === 'Asia';
+    });
+    displayCountries(asianCountries);
+    return;
+  });
+
+  //* Add event listener to Europe Region List Item
+  document.getElementById('region-europe').addEventListener('click', (e) => {
+    const countryContainer = document.getElementById('country-container');
+    countryContainer.innerHTML = '';
+
+    const europeanCountries = countries.filter((country) => {
+      filterRegion.innerText = 'Europe';
+      return country.region === 'Europe';
+    });
+    displayCountries(europeanCountries);
+    return;
+  });
+
+  //* Add event listener to Oceania Region List Item
+  document.getElementById('region-oceania').addEventListener('click', (e) => {
+    const countryContainer = document.getElementById('country-container');
+    countryContainer.innerHTML = '';
+
+    const europeanCountries = countries.filter((country) => {
+      filterRegion.innerText = 'Oceania';
+      return country.region === 'Oceania';
+    });
+    displayCountries(europeanCountries);
+    return;
+  });
 }
 
 // function displayCountryDetail(country) {
