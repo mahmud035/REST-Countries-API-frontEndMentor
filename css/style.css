@@ -117,6 +117,7 @@ body.dark #filter + ul li:hover a {
 
 #country-container h6 {
   font-weight: bold;
+  padding: 5px 0;
 }
 
 #country-container h6 span {
@@ -126,4 +127,15 @@ body.dark #filter + ul li:hover a {
 .card {
   background-color: var(--white);
   cursor: pointer;
+}
+
+/* Country.HTML page Styling */
+.country-detail img {
+  width: 100%;
+  height: 350px;
+}
+
+body.dark div.country-detail#country-container .card {
+  color: var(--white) !important;
+  background-color: var(--dark-mode-bg) !important;
 }
