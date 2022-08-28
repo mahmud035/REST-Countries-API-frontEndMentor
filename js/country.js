@@ -8,17 +8,25 @@ document.getElementById('btn-toggle').addEventListener('click', () => {
   const moonIcon = document.getElementById('moon-icon');
 
   if (bodyElement.classList.contains('dark')) {
+    localStorage.setItem('darkMode', 'enabled');
+
     btnToggleText.innerText = 'Light Mode';
     // add 'bxs-moon' class for solid moon icon
     moonIcon.classList.add('bxs-moon');
     moonIcon.classList.remove('bx-moon');
   } else {
+    localStorage.setItem('darkMode', 'disabled');
+
     btnToggleText.innerText = 'Dark Mode';
     moonIcon.classList.add('bx-moon');
     // remove 'bxs-moon' class for regular moon icon when dark mode is off
     moonIcon.classList.remove('bxs-moon');
   }
 });
+
+if (localStorage.getItem('darkMode') == 'enabled') {
+  document.body.classList.toggle('dark');
+}
 
 function displayCountryDetail() {
   const countryObjectString = sessionStorage.getItem('country');
@@ -65,7 +73,6 @@ function displayCountryDetail() {
 
   countryContainer.appendChild(countryDiv);
   console.log(country);
-  // console.log(country?.name?.nativeName?.eng?.common);
 }
 
 displayCountryDetail();
