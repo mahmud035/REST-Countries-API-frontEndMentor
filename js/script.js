@@ -33,11 +33,12 @@ function displayCountries(countries) {
 
   for (const country of countries) {
     const countryObject = JSON.stringify(country);
+    // console.log(country);
 
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML = `
-      <div onclick = 'displayCountryDetail(${countryObject})' id="country-card" class="card h-100 shadow-sm border-0 rounded">
+      <div onclick = "loadCountryDetail('${country?.cca2}')" id="country-card" class="card h-100 shadow-sm border-0 rounded">
           <img src="${country?.flags?.png}" class="card-img-top  country-img" alt="..." />
           <div class="card-body p-4 pb-5">
             <h4 class="card-title fw-bold py-2">${country?.name?.common}</h4>
@@ -50,6 +51,27 @@ function displayCountries(countries) {
     countryContainer.appendChild(div);
   }
 }
+
+function loadCountryDetail(code) {
+  // window.location.href = './country.html';
+  const url = `https://restcountries.com/v3.1/alpha/${code}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayCountryDetail(data[0]));
+}
+
+const displayCountryDetail = (country) => {
+  window.location.href = './country.html';
+  const countryObject = JSON.stringify(country);
+  sessionStorage.setItem('country', countryObject);
+  // console.log(country);
+};
+
+// document.getElementById('home').addEventListener('click', () => {
+//   console.log('clicked');
+//   loadCountries();
+// });
 
 function loadCountries2() {
   fetch('https://restcountries.com/v3.1/all')
@@ -177,11 +199,11 @@ document.getElementById('search-country').addEventListener('keyup', (e) => {
 function displaySearchCountry(country) {
   const countryContainer = document.getElementById('country-container');
   countryContainer.innerHTML = ''; // clear the country container before adding new countries
-  console.log(country);
+  // console.log(country);
   const div = document.createElement('div');
   div.classList.add('col');
   div.innerHTML = `
-      <div class="card h-100 shadow-sm border-0 rounded">
+      <div onclick = "loadCountryDetail('${country?.cca2}')" class="card h-100 shadow-sm border-0 rounded">
           <img src="${country?.flags?.png}" class="card-img-top  country-img" alt="..." />
           <div class="card-body p-4 pb-5">
             <h4 class="card-title fw-bold py-2">${country?.name?.common}</h4>

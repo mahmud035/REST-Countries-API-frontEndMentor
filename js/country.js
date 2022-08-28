@@ -20,7 +20,6 @@ document.getElementById('btn-toggle').addEventListener('click', () => {
   }
 });
 
-// function loadCountry(country) {
-//   console.log(country);
-//   console.log('hello from country.js');
-// }
+const countryObjectString = sessionStorage.getItem('country');
+const countryObject = JSON.parse(countryObjectString);
+console.log(countryObject);
