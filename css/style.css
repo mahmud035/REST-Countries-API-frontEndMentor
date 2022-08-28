@@ -75,7 +75,8 @@ body.dark nav,
 body.dark nav button,
 body.dark .card,
 body.dark #search-country,
-body.dark #filter {
+body.dark #filter,
+body.dark #back-previous-page {
   background-color: var(--dark-mode-elements) !important;
   color: var(--white) !important;
 }

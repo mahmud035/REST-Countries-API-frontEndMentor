@@ -33,7 +33,7 @@ function displayCountryDetail() {
        <div class="col-sm-6">
           <img src="${country?.flags?.png}" class="img-fluid" alt="..." />
        </div>
-        <div class="col-sm-6 d-flex flex-column justify-content-center">
+       <div class="col-sm-6 d-flex flex-column justify-content-center">
             <h2 class="card-title fw-bold py-3">${country?.name?.common}
             </h2>
           <div class="row">
@@ -51,6 +51,15 @@ function displayCountryDetail() {
                 <h6>Languages: <span>${country?.languages?.eng} </span> </h6>
             </div>
          </div>
+          <div class="row py-4">
+            <div class="col">
+              <h6>Border Countries:</h6>
+            </div>
+            <div class="col-sm-7">
+              <button class="btn  bg-white px-4 py-1 shadow-sm ">${country?.borders?.[0]} </button >
+              <button class="btn  bg-white px-4 py-1 shadow-sm">${country?.borders?.[1]} </button >
+            </div>
+         </div>
       </div>
     </div>`;
 
@@ -60,3 +69,8 @@ function displayCountryDetail() {
 }
 
 displayCountryDetail();
+
+document.getElementById('back-previous-page').addEventListener('click', () => {
+  console.log('clicked');
+  window.location.href = './index.html';
+});
