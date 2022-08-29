@@ -33,8 +33,10 @@ const countryObjectString = sessionStorage.getItem('country');
 const country = JSON.parse(countryObjectString);
 // console.log(country);
 
-function displayCountryDetail() {
+function displayCountryDetails(country) {
   const countryContainer = document.getElementById('country-container');
+  countryContainer.innerHTML = '';
+  console.log(country);
 
   const countryDiv = document.createElement('div');
   countryDiv.classList.add('card', 'mb-3', 'border-0', 'bg-transparent');
@@ -68,7 +70,7 @@ function displayCountryDetail() {
             </div>
          </div>
           <div class="row py-4">
-            <div class="col">
+            <div class="col" id="border-countries-text">
               <h6>Border Countries:</h6>
             </div>
             <div id="borders" class="col-sm-7 borders">
@@ -79,42 +81,63 @@ function displayCountryDetail() {
     </div>`;
 
   countryContainer.appendChild(countryDiv);
+  getBorderCountries(country);
   // console.log(country);
 }
 
-displayCountryDetail(); //* call displayCountryDetail() function
+displayCountryDetails(country); //* call displayCountryDetail() function
+
+function getBorderCountries(country) {
+  const borderCountriesContainer = document.getElementById('borders');
+  const borderCountries = country.borders ? country.borders : [];
+  console.log(country);
+
+  if (borderCountries.length == 0) {
+    document.getElementById('border-countries-text').style.display = 'none';
+  } else {
+    borderCountries.forEach((borderCountry) => {
+      console.log(borderCountry);
+
+      const borderElement = document.createElement('a');
+      borderElement.classList.add(
+        'border',
+        'shadow-sm',
+        'border-0',
+        'fw-semibold',
+        'border-element'
+      );
+      borderElement.innerText = borderCountry;
+
+      borderCountriesContainer.appendChild(borderElement);
+    });
+  }
+  console.log(borderCountries);
+}
+
+// getBorderCountries(country); //* call getBorderCountries() function
+
+const allBorderElement = document.querySelectorAll('.border-element');
+console.log(allBorderElement);
+
+allBorderElement.forEach((borderElement) => {
+  borderElement.addEventListener('click', () => {
+    console.log(`${borderElement.innerText} clicked`);
+    const countryCode = borderElement.innerText;
+    loadCountryDetail(countryCode);
+  });
+});
+
+console.log(country);
+
+function loadCountryDetail(code) {
+  const url = `https://restcountries.com/v3.1/alpha/${code}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayCountryDetails(data[0]));
+}
 
 //* use history api
 document.getElementById('back-previous-page').addEventListener('click', () => {
   window.history.back();
 });
-
-function getBorderCountries(country) {
-  const borderCountriesContainer = document.getElementById('borders');
-  const borderCountries = country.borders;
-  console.log(country);
-
-  borderCountries.forEach((borderCountry) => {
-    console.log(borderCountry);
-
-    const borderElement = document.createElement('a');
-    borderElement.classList.add(
-      'border',
-      'shadow-sm',
-      'border-0',
-      'fw-semibold'
-    );
-    borderElement.innerText = borderCountry;
-
-    borderCountriesContainer.appendChild(borderElement);
-  });
-  console.log(borderCountries);
-}
-
-getBorderCountries(country); //* call getBorderCountries() function
-
-// function displayBorderCountries(country) {
-//   console.log(country);
-// }
-
-// displayBorderCountries();
