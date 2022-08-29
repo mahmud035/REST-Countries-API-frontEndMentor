@@ -28,7 +28,14 @@ if (localStorage.getItem('darkMode') == 'enabled') {
   document.body.classList.toggle('dark');
 }
 
+const toggleSpinner = (displayValue) => {
+  document.getElementById('spinner').style.display = displayValue;
+};
+
 function loadCountries() {
+  // display spinner
+  toggleSpinner('block');
+
   fetch('https://restcountries.com/v3.1/all')
     .then((res) => res.json())
     .then((data) => displayCountries(data));
@@ -58,6 +65,8 @@ function displayCountries(countries) {
 
     countryContainer.appendChild(div);
   }
+  // Hide Spinner
+  toggleSpinner('none');
 }
 
 function loadCountryDetail(code) {
@@ -178,6 +187,9 @@ function displayAfricaRegionCountry(countries) {
 //* add event listener to search input field
 
 document.getElementById('search-country').addEventListener('keyup', (e) => {
+  // display spinner
+  toggleSpinner('block');
+
   const searchText = e.target.value;
 
   // This is a fetch request to the API. It is using the searchText to search for the country.
@@ -210,4 +222,6 @@ function displaySearchCountry(country) {
       </div>`;
 
   countryContainer.appendChild(div);
+  // display spinner
+  toggleSpinner('none');
 }

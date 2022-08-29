@@ -111,6 +111,27 @@ body.dark #filter + ul li:hover a {
   font-size: 22px;
 }
 
+/* Spinner */
+#spinner {
+  display: none;
+  pointer-events: none;
+  width: 3.5em;
+  height: 3.5em;
+  border: 0.4em solid transparent;
+  border-color: #256d85;
+  border-top-color: #2b4865;
+  border-radius: 50%;
+  animation: loading-spinner 1s linear infinite;
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes loading-spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Main Section: Display All Country */
 .country-img {
   height: 210px;
