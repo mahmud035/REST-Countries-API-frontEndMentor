@@ -28,6 +28,13 @@ if (localStorage.getItem('darkMode') == 'enabled') {
   document.body.classList.toggle('dark');
 }
 
+const toggleSpinner = (displayValue) => {
+  document.getElementById('spinner').style.display = displayValue;
+};
+
+// display spinner when page is loading
+toggleSpinner('block');
+
 //* get country object
 const countryObjectString = sessionStorage.getItem('country');
 const country = JSON.parse(countryObjectString);
@@ -83,6 +90,9 @@ function displayCountryDetails(country) {
   countryContainer.appendChild(countryDiv);
   getBorderCountries(country);
   // console.log(country);
+
+  // hide spinner
+  toggleSpinner('none');
 }
 
 displayCountryDetails(country); //* call displayCountryDetail() function
@@ -130,6 +140,9 @@ allBorderElement.forEach((borderElement) => {
 console.log(country);
 
 function loadCountryDetail(code) {
+  // display spinner
+  toggleSpinner('block');
+
   const url = `https://restcountries.com/v3.1/alpha/${code}`;
 
   fetch(url)
