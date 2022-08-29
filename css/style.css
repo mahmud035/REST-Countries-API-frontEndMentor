@@ -76,7 +76,8 @@ body.dark nav button,
 body.dark .card,
 body.dark #search-country,
 body.dark #filter,
-body.dark #back-previous-page {
+body.dark #back-previous-page,
+body.dark .border {
   background-color: var(--dark-mode-elements) !important;
   color: var(--white) !important;
 }
@@ -139,4 +140,17 @@ body.dark #filter + ul li:hover a {
 body.dark div.country-detail#country-container .card {
   color: var(--white) !important;
   background-color: var(--dark-mode-bg) !important;
+}
+
+/* Display Border Countries */
+.border {
+  /* background-color: #fff; */
+  font-size: 0.7rem;
+  padding: 0.4rem 0.7rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  border-radius: 3px;
+  text-decoration: none;
+  color: black;
 }

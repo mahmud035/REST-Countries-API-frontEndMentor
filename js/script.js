@@ -61,7 +61,6 @@ function displayCountries(countries) {
 }
 
 function loadCountryDetail(code) {
-  // window.location.href = './country.html';
   const url = `https://restcountries.com/v3.1/alpha/${code}`;
 
   fetch(url)
@@ -75,11 +74,6 @@ const displayCountryDetail = (country) => {
   sessionStorage.setItem('country', countryObject);
   // console.log(country);
 };
-
-// document.getElementById('home').addEventListener('click', () => {
-//   console.log('clicked');
-//   loadCountries();
-// });
 
 function loadCountries2() {
   fetch('https://restcountries.com/v3.1/all')
@@ -180,12 +174,6 @@ function displayAfricaRegionCountry(countries) {
     return;
   });
 }
-
-// function displayCountryDetail(country) {
-//   console.log(country);
-//   window.location.href = './country.html';
-//   return loadCountry(country);
-// }
 
 //* add event listener to search input field
 

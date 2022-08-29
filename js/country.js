@@ -28,10 +28,12 @@ if (localStorage.getItem('darkMode') == 'enabled') {
   document.body.classList.toggle('dark');
 }
 
-function displayCountryDetail() {
-  const countryObjectString = sessionStorage.getItem('country');
-  const country = JSON.parse(countryObjectString);
+//* get country object
+const countryObjectString = sessionStorage.getItem('country');
+const country = JSON.parse(countryObjectString);
+// console.log(country);
 
+function displayCountryDetail() {
   const countryContainer = document.getElementById('country-container');
 
   const countryDiv = document.createElement('div');
@@ -47,7 +49,11 @@ function displayCountryDetail() {
           <div class="row">
             <div class="col-12 col-md-6">
                  
-                 <h6>Native Name: <span>${country?.name?.nativeName?.eng?.common} </span> </h6>
+                 <h6>Native Name: <span>${
+                   country?.name?.nativeName?.eng?.common
+                     ? country?.name?.nativeName?.eng?.common
+                     : country?.name?.common
+                 } </span> </h6>
                   <h6>Population: <span>${country?.population} </span> </h6>
                  <h6>Region: <span>${country?.region} </span> </h6>
                  <h6>Sub Region: <span>${country?.subregion} </span> </h6>
@@ -55,7 +61,9 @@ function displayCountryDetail() {
             </div>
             <div class="col-12 col-md-6">
                 <h6>Top Level Domain: <span>${country?.tld[0]} </span> </h6>
-                <h6>Currencies: <span>${country?.currencies?.EUR?.name} </span> </h6>
+                <h6>Currencies: <span>${
+                  country?.currencies?.EUR?.name
+                } </span> </h6>
                 <h6>Languages: <span>${country?.languages?.eng} </span> </h6>
             </div>
          </div>
@@ -63,21 +71,50 @@ function displayCountryDetail() {
             <div class="col">
               <h6>Border Countries:</h6>
             </div>
-            <div class="col-sm-7">
-              <button class="btn  bg-white px-4 py-1 shadow-sm ">${country?.borders?.[0]} </button >
-              <button class="btn  bg-white px-4 py-1 shadow-sm">${country?.borders?.[1]} </button >
+            <div id="borders" class="col-sm-7 borders">
+             
             </div>
          </div>
       </div>
     </div>`;
 
   countryContainer.appendChild(countryDiv);
-  console.log(country);
+  // console.log(country);
 }
 
-displayCountryDetail();
+displayCountryDetail(); //* call displayCountryDetail() function
 
+//* use history api
 document.getElementById('back-previous-page').addEventListener('click', () => {
-  console.log('clicked');
-  window.location.href = './index.html';
+  window.history.back();
 });
+
+function getBorderCountries(country) {
+  const borderCountriesContainer = document.getElementById('borders');
+  const borderCountries = country.borders;
+  console.log(country);
+
+  borderCountries.forEach((borderCountry) => {
+    console.log(borderCountry);
+
+    const borderElement = document.createElement('a');
+    borderElement.classList.add(
+      'border',
+      'shadow-sm',
+      'border-0',
+      'fw-semibold'
+    );
+    borderElement.innerText = borderCountry;
+
+    borderCountriesContainer.appendChild(borderElement);
+  });
+  console.log(borderCountries);
+}
+
+getBorderCountries(country); //* call getBorderCountries() function
+
+// function displayBorderCountries(country) {
+//   console.log(country);
+// }
+
+// displayBorderCountries();
