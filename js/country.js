@@ -35,7 +35,7 @@ const toggleSpinner = (displayValue) => {
 // display spinner when page is loading
 toggleSpinner('block');
 
-//* get country object
+//* get country object from sessionStorage
 const countryObjectString = sessionStorage.getItem('country');
 const country = JSON.parse(countryObjectString);
 // console.log(country);
@@ -73,7 +73,9 @@ function displayCountryDetails(country) {
                 <h6>Currencies: <span>${
                   country?.currencies?.EUR?.name
                 } </span> </h6>
-                <h6>Languages: <span>${country?.languages?.eng} </span> </h6>
+
+                <h6 id="languages">Languages: </h6>
+               
             </div>
          </div>
           <div class="row py-4">
@@ -88,7 +90,9 @@ function displayCountryDetails(country) {
     </div>`;
 
   countryContainer.appendChild(countryDiv);
-  getBorderCountries(country);
+
+  getCountryLanguages(country); //* call getCountryLanguages() function
+  getBorderCountries(country); //* call getBorderCountries() function
   // console.log(country);
 
   // hide spinner
@@ -97,6 +101,24 @@ function displayCountryDetails(country) {
 
 displayCountryDetails(country); //* call displayCountryDetail() function
 
+//* get A Countries all languages
+function getCountryLanguages(country) {
+  const languagesContainer = document.getElementById('languages');
+
+  const languageObject = country.languages;
+  // console.log(languageObject);
+
+  const languageNames = Object.values(languageObject); //* get values from language object
+  // console.log(languageNames);
+  // console.log(languageNames.join(','));
+
+  const languageElement = document.createElement('span'); //* create a new element
+  languageElement.innerText = languageNames.join(', ');
+
+  languagesContainer.appendChild(languageElement);
+}
+
+//* get all border countries
 function getBorderCountries(country) {
   const borderCountriesContainer = document.getElementById('borders');
   const borderCountries = country.borders ? country.borders : [];
@@ -106,7 +128,7 @@ function getBorderCountries(country) {
     document.getElementById('border-countries-text').style.display = 'none';
   } else {
     borderCountries.forEach((borderCountry) => {
-      console.log(borderCountry);
+      // console.log(borderCountry);
 
       const borderElement = document.createElement('a');
       borderElement.classList.add(
@@ -124,10 +146,11 @@ function getBorderCountries(country) {
   console.log(borderCountries);
 }
 
-// getBorderCountries(country); //* call getBorderCountries() function
+// getBorderCountries(country); //! don't call here
 
+//* get all border countries Element
 const allBorderElement = document.querySelectorAll('.border-element');
-console.log(allBorderElement);
+// console.log(allBorderElement);
 
 allBorderElement.forEach((borderElement) => {
   borderElement.addEventListener('click', () => {
