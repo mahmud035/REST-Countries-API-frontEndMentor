@@ -70,9 +70,7 @@ function displayCountryDetails(country) {
             </div>
             <div class="col-12 col-md-6">
                 <h6>Top Level Domain: <span>${country?.tld[0]} </span> </h6>
-                <h6>Currencies: <span>${
-                  country?.currencies?.EUR?.name
-                } </span> </h6>
+                <h6 id="currencies">Currencies: </h6>
 
                 <h6 id="languages">Languages: </h6>
                
@@ -91,6 +89,7 @@ function displayCountryDetails(country) {
 
   countryContainer.appendChild(countryDiv);
 
+  getCurrencies(country); //* call getCurrencies() function
   getCountryLanguages(country); //* call getCountryLanguages() function
   getBorderCountries(country); //* call getBorderCountries() function
   // console.log(country);
@@ -101,7 +100,23 @@ function displayCountryDetails(country) {
 
 displayCountryDetails(country); //* call displayCountryDetail() function
 
-//* get A Countries all languages
+//* get Countries Currencies
+function getCurrencies(country) {
+  const currenciesContainer = document.getElementById('currencies');
+
+  //* get values from currencies object
+  const currenciesOuterObject = Object.values(country.currencies);
+  const currenciesInnerObject = currenciesOuterObject[0];
+  const currenciesName = currenciesInnerObject.name;
+
+  console.log(currenciesInnerObject, currenciesName);
+  const currenciesElement = document.createElement('span'); //* create a new element
+  currenciesElement.innerText = currenciesName;
+
+  currenciesContainer.appendChild(currenciesElement);
+}
+
+//* get A Countries all Languages
 function getCountryLanguages(country) {
   const languagesContainer = document.getElementById('languages');
 
@@ -118,7 +133,7 @@ function getCountryLanguages(country) {
   languagesContainer.appendChild(languageElement);
 }
 
-//* get all border countries
+//* get all Border Countries
 function getBorderCountries(country) {
   const borderCountriesContainer = document.getElementById('borders');
   const borderCountries = country.borders ? country.borders : [];
@@ -148,7 +163,7 @@ function getBorderCountries(country) {
 
 // getBorderCountries(country); //! don't call here
 
-//* get all border countries Element
+//* get all Border Countries Element
 const allBorderElement = document.querySelectorAll('.border-element');
 // console.log(allBorderElement);
 

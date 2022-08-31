@@ -167,7 +167,7 @@ body.dark div.country-detail#country-container .card {
 .border {
   /* background-color: #fff; */
   font-size: 0.7rem;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 1rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   display: inline-block;
