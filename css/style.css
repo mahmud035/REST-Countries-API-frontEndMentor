@@ -175,3 +175,11 @@ body.dark div.country-detail#country-container .card {
   text-decoration: none;
   color: black;
 }
+
+/* Media Query */
+@media (max-width: 576px) {
+  .navbar a,
+  .navbar button {
+    font-size: 1.1rem !important;
+  }
+}
